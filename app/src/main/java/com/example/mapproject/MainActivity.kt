@@ -1,5 +1,6 @@
 package com.example.mapproject
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mapButton = findViewById<Button>(R.id.button)
+        val mapButton = findViewById<Button>(R.id.mapButton)
+
+        mapButton.setOnClickListener{
+            val mapIntent = Intent(this, MapsActivity::class.java)
+            startActivity(mapIntent)
+        }
+
+
 
     }
 }

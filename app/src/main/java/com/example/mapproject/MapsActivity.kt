@@ -160,7 +160,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val response = task.result
                 for (placeLikelihood in response?.placeLikelihoods ?: emptyList()) {
                     val place = placeLikelihood.place
-                    if (place.types.any { it in types }) {
+                    val placeTypes = place.types
+                    if (placeTypes.isNullOrEmpty()) {
+                        mMap.addMarker(MarkerOptions()
+                            .title(place.name)
+                            .position(place.latLng))
+                    } else if (place.types.any { it in types }) {
                         mMap.addMarker(MarkerOptions()
                             .title(place.name)
                             .position(place.latLng))
